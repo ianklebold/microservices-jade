@@ -10,4 +10,14 @@ public interface IAccountsService {
      * @param customerDto the customer dto
      */
     void createAccount(CustomerDto customerDto);
+
+
+    /**
+     * Gets account.
+     *
+     * @param mobileNumber the mobile number
+     * @return the account
+     */
+    CustomerDto getAccount(String mobileNumber);
+
 }

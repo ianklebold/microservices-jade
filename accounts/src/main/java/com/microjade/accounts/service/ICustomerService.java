@@ -6,4 +6,7 @@ import com.microjade.accounts.entity.Customer;
 public interface ICustomerService {
 
     Customer createCustomer(CustomerDto customerDto);
+
+    Customer getCustomerByMobile(String mobileNumber);
+
 }

@@ -1,9 +1,13 @@
 package com.microjade.accounts.service.impl;
 
 import com.microjade.accounts.constants.AccountsConstants;
+import com.microjade.accounts.dto.AccountsDto;
 import com.microjade.accounts.dto.CustomerDto;
 import com.microjade.accounts.entity.Accounts;
 import com.microjade.accounts.entity.Customer;
+import com.microjade.accounts.exception.ResourceNotFoundException;
+import com.microjade.accounts.mapper.AccountsMapper;
+import com.microjade.accounts.mapper.CustomerMapper;
 import com.microjade.accounts.repository.AccountsRepository;
 import com.microjade.accounts.service.IAccountsService;
 import com.microjade.accounts.service.ICustomerService;
@@ -24,6 +28,21 @@ public class AccountServiceImpl implements IAccountsService {
     public void createAccount(CustomerDto customerDto) {
         Customer savedCustomer = customerService.createCustomer(customerDto);
         accountsRepository.save(createNewAccount(savedCustomer));
+    }
+
+    @Override
+    public CustomerDto getAccount(String mobileNumber) {
+        Customer customer = customerService.getCustomerByMobile(mobileNumber);
+
+        Accounts accounts = accountsRepository.findAccountsByCustomerId(customer.getCustomerId())
+                .orElseThrow(() -> new ResourceNotFoundException("Account","customerId",customer.getCustomerId().toString())
+                );
+
+        AccountsDto accountsDto = AccountsMapper.mapToAccountsDto(accounts, new AccountsDto());
+        CustomerDto customerDto = CustomerMapper.mapToCustomerDto(customer, new CustomerDto());
+        customerDto.setAccountsDto(accountsDto);
+
+        return customerDto;
     }
 
     private Accounts createNewAccount(Customer customer){

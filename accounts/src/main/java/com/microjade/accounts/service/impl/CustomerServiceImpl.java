@@ -3,6 +3,7 @@ package com.microjade.accounts.service.impl;
 import com.microjade.accounts.dto.CustomerDto;
 import com.microjade.accounts.entity.Customer;
 import com.microjade.accounts.exception.CustomerAlreadyExistsException;
+import com.microjade.accounts.exception.ResourceNotFoundException;
 import com.microjade.accounts.mapper.CustomerMapper;
 import com.microjade.accounts.repository.CustomerRepository;
 import com.microjade.accounts.service.ICustomerService;
@@ -30,5 +31,12 @@ public class CustomerServiceImpl implements ICustomerService {
         customer.setCreatedAt(LocalDateTime.now());
         customer.setCreatedBy("Anonymous");
         return customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer getCustomerByMobile(String mobileNumber) {
+        return customerRepository.findCustomerByMobileNumber(mobileNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer","mobileNumber",mobileNumber)
+                );
     }
 }
