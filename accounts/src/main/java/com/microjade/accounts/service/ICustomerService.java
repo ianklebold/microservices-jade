@@ -9,4 +9,8 @@ public interface ICustomerService {
 
     Customer getCustomerByMobile(String mobileNumber);
 
+    Customer getCustomerById(Long customerId);
+
+    void updateCustomer(CustomerDto customerDto, Long customerId);
+
 }

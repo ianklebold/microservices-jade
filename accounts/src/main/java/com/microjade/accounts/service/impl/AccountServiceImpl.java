@@ -9,12 +9,14 @@ import com.microjade.accounts.exception.ResourceNotFoundException;
 import com.microjade.accounts.mapper.AccountsMapper;
 import com.microjade.accounts.mapper.CustomerMapper;
 import com.microjade.accounts.repository.AccountsRepository;
+import com.microjade.accounts.repository.CustomerRepository;
 import com.microjade.accounts.service.IAccountsService;
 import com.microjade.accounts.service.ICustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Random;
 
 @Service
@@ -23,7 +25,6 @@ public class AccountServiceImpl implements IAccountsService {
 
     private AccountsRepository accountsRepository;
     private ICustomerService customerService;
-
     @Override
     public void createAccount(CustomerDto customerDto) {
         Customer savedCustomer = customerService.createCustomer(customerDto);
@@ -43,6 +44,30 @@ public class AccountServiceImpl implements IAccountsService {
         customerDto.setAccountsDto(accountsDto);
 
         return customerDto;
+    }
+
+    @Override
+    public boolean updateAccount(CustomerDto customerDto) {
+        boolean isUpdated = Boolean.FALSE;
+
+        AccountsDto accountsDto = customerDto.getAccountsDto();
+
+        if (Objects.nonNull(accountsDto)){
+            Accounts accounts = accountsRepository.findById(accountsDto.getAccountNumber()).orElseThrow(
+                    () -> new ResourceNotFoundException("Account", "AccountNumber", accountsDto.getAccountNumber().toString())
+            );
+
+            //Se actualiza accounts con accountsDto
+            AccountsMapper.mapToAccounts(accountsDto,accounts);
+            accountsRepository.save(accounts);
+
+            Long customerId = accounts.getCustomerId();
+
+            //Se actualiza customer con customerDto
+            customerService.updateCustomer(customerDto,customerId);
+            isUpdated = Boolean.TRUE;
+        }
+        return isUpdated;
     }
 
     private Accounts createNewAccount(Customer customer){

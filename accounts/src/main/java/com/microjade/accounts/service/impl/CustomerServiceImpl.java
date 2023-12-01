@@ -39,4 +39,20 @@ public class CustomerServiceImpl implements ICustomerService {
                 .orElseThrow(() -> new ResourceNotFoundException("Customer","mobileNumber",mobileNumber)
                 );
     }
+
+    @Override
+    public Customer getCustomerById(Long customerId) {
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer","customerId",customerId.toString())
+                );
+    }
+
+    @Override
+    public void updateCustomer(CustomerDto customerDto, Long customerId) {
+        Customer customer = getCustomerById(customerId);
+
+        //Se actualiza customer con customerDto
+        CustomerMapper.mapToCustomer(customerDto,customer);
+        customerRepository.save(customer);
+    }
 }

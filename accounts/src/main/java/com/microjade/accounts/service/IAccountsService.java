@@ -20,4 +20,12 @@ public interface IAccountsService {
      */
     CustomerDto getAccount(String mobileNumber);
 
+    /**
+     * Update account boolean.
+     *
+     * @param customerDto the customer dto
+     * @return boolean indicating if the update of Account details is successful or not
+     */
+    boolean updateAccount(CustomerDto customerDto);
+
 }
