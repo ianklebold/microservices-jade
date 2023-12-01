@@ -55,4 +55,10 @@ public class CustomerServiceImpl implements ICustomerService {
         CustomerMapper.mapToCustomer(customerDto,customer);
         customerRepository.save(customer);
     }
+
+    @Override
+    public boolean deleteCustomer(Long customerId) {
+        customerRepository.deleteById(customerId);
+        return Boolean.TRUE;
+    }
 }

@@ -25,6 +25,8 @@ public class AccountServiceImpl implements IAccountsService {
 
     private AccountsRepository accountsRepository;
     private ICustomerService customerService;
+    private final CustomerRepository customerRepository;
+
     @Override
     public void createAccount(CustomerDto customerDto) {
         Customer savedCustomer = customerService.createCustomer(customerDto);
@@ -68,6 +70,17 @@ public class AccountServiceImpl implements IAccountsService {
             isUpdated = Boolean.TRUE;
         }
         return isUpdated;
+    }
+
+    @Override
+    public boolean deleteAccount(String mobileNumber) {
+        Customer customer = customerRepository.findCustomerByMobileNumber(mobileNumber)
+                .orElseThrow( () -> new ResourceNotFoundException("Customer","mobileNumber",mobileNumber)
+                );
+
+        accountsRepository.deleteByCustomerId(customer.getCustomerId());
+        customerService.deleteCustomer(customer.getCustomerId());
+        return Boolean.TRUE;
     }
 
     private Accounts createNewAccount(Customer customer){

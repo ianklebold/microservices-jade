@@ -13,4 +13,6 @@ public interface ICustomerService {
 
     void updateCustomer(CustomerDto customerDto, Long customerId);
 
+    boolean deleteCustomer(Long customerId);
+
 }
