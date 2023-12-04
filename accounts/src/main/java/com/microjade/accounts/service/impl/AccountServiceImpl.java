@@ -25,7 +25,7 @@ public class AccountServiceImpl implements IAccountsService {
 
     private AccountsRepository accountsRepository;
     private ICustomerService customerService;
-    private final CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     @Override
     public void createAccount(CustomerDto customerDto) {
