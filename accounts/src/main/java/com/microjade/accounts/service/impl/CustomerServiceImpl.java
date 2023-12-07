@@ -28,8 +28,6 @@ public class CustomerServiceImpl implements ICustomerService {
         if (optionalCustomer.isPresent()){
             throw new CustomerAlreadyExistsException("Customer already registered with given mobileNumber" + customerDto.getMobileNumber());
         }
-        customer.setCreatedAt(LocalDateTime.now());
-        customer.setCreatedBy("Anonymous");
         return customerRepository.save(customer);
     }
 
