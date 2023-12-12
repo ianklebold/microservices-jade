@@ -1,14 +1,13 @@
-package com.microjade.accounts.dto;
+package com.eazybytes.loans.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
-@Data @AllArgsConstructor @Builder
+@Data @AllArgsConstructor
 @Schema(
         name = "ErrorResponse",
         description = "Schema to hold error response information"
@@ -16,9 +15,9 @@ import java.time.LocalDateTime;
 public class ErrorResponseDto {
 
     @Schema(
-            description = "API patch invoked by client"
+            description = "API path invoked by client"
     )
-    private String apiPath;
+    private  String apiPath;
 
     @Schema(
             description = "Error code representing the error happened"
@@ -26,12 +25,13 @@ public class ErrorResponseDto {
     private HttpStatus errorCode;
 
     @Schema(
-            description = "Error code representing the error happened"
+            description = "Error message representing the error happened"
     )
-    private String errorMessage;
+    private  String errorMessage;
 
     @Schema(
             description = "Time representing when the error happened"
     )
     private LocalDateTime errorTime;
+
 }
