@@ -1,0 +1,16 @@
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/repository/LoansRepository.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/exception/ResourceNotFoundException.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/constants/LoansConstants.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/LoansApplication.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/audit/AuditAwareImpl.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/dto/ResponseDto.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/dto/ErrorResponseDto.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/controller/LoansController.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/service/ILoansService.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/entity/BaseEntity.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/dto/LoansDto.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/exception/LoanAlreadyExistsException.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/mapper/LoansMapper.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/service/impl/LoansServiceImpl.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/exception/GlobalExceptionHandler.java
+/home/ian/Desarrollo/DevPractice/microservicios/loans/src/main/java/com/eazybytes/loans/entity/Loans.java
